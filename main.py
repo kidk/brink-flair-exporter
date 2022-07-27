@@ -96,12 +96,12 @@ class BrinkFlair(object):
         value = self.instrument.read_register (4100, 0, 4, False)
         yield self.collect_gauge('brink_flair_filter_status', 'Filter status (0: clean, 1: dirty', value)
         filterStateEnum = {0: 'clean', 1: 'dirty'}
-        print ('Filter status:', filterStateEnum [value])
+        print ('brink_flair_filter_status:', filterStateEnum [value])
 
-        # value = self.instrument.read_register (4060, 0, 4, False)
-        # yield self.collect_gauge('brink_flair_outside_humidity', 'Outside humidity', value)
-        # preheaterStateEnum = {0: 'initialize', 1: 'inactive', 2: 'active', 3: 'test mode'}
-        # print ('Preheat status:', preheaterStateEnum [value])
+        value = self.instrument.read_register (4060, 0, 4, False)
+        yield self.collect_gauge('brink_flair_preheat_status', 'Preheat status (0: initialize, 1: inactive, 2: active, 3: test mode)', value)
+        preheaterStateEnum = {0: 'initialize', 1: 'inactive', 2: 'active', 3: 'test mode'}
+        print ('brink_flair_preheat_status:', preheaterStateEnum [value])
 
         # value = self.instrument.read_register (4061, 0, 4, False)
         # yield self.collect_gauge('brink_flair_outside_humidity', 'Outside humidity', value)
