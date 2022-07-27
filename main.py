@@ -93,10 +93,10 @@ class BrinkFlair(object):
         bypassStateEnum = {0: 'initialize', 1: 'open', 2: 'closed', 3: 'open', 4: 'closed', 255: 'error'}
         print ('brink_flair_bypass_state:', bypassStateEnum [value])
 
-        # value = self.instrument.read_register (4100, 0, 4, False)
-        # yield self.collect_gauge('brink_flair_outside_humidity', 'Outside humidity', value)
-        # filterStateEnum = {0: 'clean', 1: 'spinavy'}
-        # print ('Filter status:', filterStateEnum [value])
+        value = self.instrument.read_register (4100, 0, 4, False)
+        yield self.collect_gauge('brink_flair_filter_status', 'Filter status (0: clean, 1: dirty', value)
+        filterStateEnum = {0: 'clean', 1: 'dirty'}
+        print ('Filter status:', filterStateEnum [value])
 
         # value = self.instrument.read_register (4060, 0, 4, False)
         # yield self.collect_gauge('brink_flair_outside_humidity', 'Outside humidity', value)
